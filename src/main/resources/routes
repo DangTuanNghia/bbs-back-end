@@ -1,0 +1,8 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+GET /posts  @bbs.port.primary.webService.restAdapter.controller.post.PostController.getAllPost
+
+GET  /posts/:id  @bbs.port.primary.webService.restAdapter.controller.post.PostController.findPotsById(id: Int)
