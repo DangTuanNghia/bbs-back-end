@@ -10,4 +10,6 @@ import scala.util.Try
 class PostService @Inject()(postRepository: PostRepository){
   def getAllPosts: Try[List[Post]] = postRepository.getAll
   def getPostById(id: Int): Try[Option[Post]] = postRepository.getPostById(id)
+  def createdPost(post: Post): Long = postRepository.createdPost(post)
+//  def updatedPost(id:Int,post: Post) = postRepository.updatedPost(id,post)
 }
