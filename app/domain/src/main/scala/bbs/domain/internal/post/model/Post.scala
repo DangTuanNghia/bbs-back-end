@@ -12,7 +12,7 @@ case class Post(identifier: PostId,
                 title: String,
                 content: String,
                 thumbnail: String,
-                createBy: Int,
+                createBy: String,
                 override val createdAt: Option[DateTime],
                 override val updatedAt: Option[DateTime]
                ) extends Entity[PostId] with PostFields {
@@ -22,7 +22,7 @@ case class Post(identifier: PostId,
 object Post {
   implicit val jodaDateReads = Reads[Option[DateTime]](js =>
     js.validate[String].map[Option[DateTime]](dtString =>
-      Option(DateTime.parse(dtString, DateTimeFormat.forPattern("dd-MM-yyyy")))))
+      Option(DateTime.parse(dtString, DateTimeFormat.forPattern("yyyy-MM-dd")))))
   implicit val jodaDateWrites = new Writes[Option[DateTime]] {
     override def writes(o: Option[DateTime]): JsValue = {
       JsString(o.get.toString())
@@ -53,7 +53,7 @@ object Post {
       (JsPath \ "title").read[String] and
       (JsPath \ "content").read[String] and
       (JsPath \ "thumbnail").read[String] and
-      (JsPath \ "createBy").read[Int] and
+      (JsPath \ "createBy").read[String] and
       (JsPath \ "createdAt").read[Option[DateTime]] and
       (JsPath \ "updatedAt").read[Option[DateTime]]) (Post.apply _)
 }

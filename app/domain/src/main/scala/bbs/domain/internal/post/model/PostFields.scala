@@ -6,7 +6,7 @@ trait PostFields {
   val title: String
   val content: String
   val thumbnail: String
-  val createBy: Int
+  val createBy: String
   val updatedAt: Option[DateTime]
   val createdAt: Option[DateTime]
 }

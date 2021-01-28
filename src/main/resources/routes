@@ -6,3 +6,7 @@
 GET /posts  @bbs.port.primary.webService.restAdapter.controller.post.PostController.getAllPost
 
 GET  /posts/:id  @bbs.port.primary.webService.restAdapter.controller.post.PostController.findPotsById(id: Int)
+
+POST /create @bbs.port.primary.webService.restAdapter.controller.post.PostController.createdPost
+
+#PUT /update/:id @bbs.port.primary.webService.restAdapter.controller.post.PostController.updatedPost(id: Int)

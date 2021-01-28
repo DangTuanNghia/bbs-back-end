@@ -9,7 +9,7 @@ case class PostRecord(
                        title: String,
                        content: String,
                        thumbnail: String,
-                       createBy: Int,
+                       createBy: String,
                        override val createdAt: Option[DateTime],
                        override val updatedAt: Option[DateTime],
                      ) extends RecordTimestamp

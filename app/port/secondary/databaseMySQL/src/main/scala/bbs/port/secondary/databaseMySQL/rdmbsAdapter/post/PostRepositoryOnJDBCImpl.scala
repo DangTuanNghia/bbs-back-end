@@ -23,4 +23,27 @@ class PostRepositoryOnJDBCImpl(protected[this] val dao: PostDAO = new PostDAO) e
   override def getAll: Try[List[Post]] = Try{ PostDAO.findAll().map(convertToEntity) }
 
   override def getPostById(id: Int): Try[Option[Post]] = Try{Some(convertToEntity(PostDAO.findById(id).get))}
+
+  override def createdPost(post: Post): Long = {
+    PostDAO.createWithAttributes(
+    'postId -> 0,
+    'title-> post.title,
+    'content -> post.content,
+    'thumbnail -> post.thumbnail,
+    'createBy -> post.createBy,
+    'createdAt -> post.createdAt,
+    'updatedAt -> post.updatedAt
+  )}
+
+//  override def updatedPost(id: Int, post: Post): Long = {
+//    PostDAO.updateById(id).withAttributes(
+//      'postId -> post.identifier.value,
+//      'title ->post.title,
+//      'content -> post.content,
+//      'thumbnail -> post.thumbnail,
+//      'createBy -> post.createBy,
+//      'createdAt -> post.createdAt,
+//      'updatedAt -> post.updatedAt
+//    )
+//  }
 }
